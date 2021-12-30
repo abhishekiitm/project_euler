@@ -1,7 +1,6 @@
 import unittest
-from unittest import result
 
-from utils import factor_pow, gcd, factorize, get_num_from_factor
+from utils import factor_pow, gcd, factorize, get_num_from_factor, check_prime, PrimeGenerator
 
 class TestUtils(unittest.TestCase):
     def test_gcd(self):
@@ -40,4 +39,19 @@ class TestUtils(unittest.TestCase):
             with self.subTest(inp = n_power_factors, expected = expected):
                 self.assertEqual(n_power, expected)
 
+    def test_check_prime(self):
+        with self.subTest():
+            self.assertEqual(check_prime(3), True)
+        with self.subTest():
+            self.assertEqual(check_prime(4), False)
+        with self.subTest():
+            self.assertEqual(check_prime(10000189), True)
+        with self.subTest():
+            self.assertEqual(check_prime(91), False)
+    
+    def test_prime_generator(self):
+        expected = [0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0]
+        solution = PrimeGenerator()
+        with self.subTest(expected = expected):
+            self.assertListEqual(expected, solution.generate_prime_list(len(expected)-1))
         
