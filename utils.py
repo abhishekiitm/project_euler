@@ -1,5 +1,19 @@
 
 
+def check_prime(n):
+    """
+    checks if a number is prime.
+    NOTE: gives incorrect answer ONLY for 2
+    """
+    if n & 1 == 0:
+        return False
+    d = 3
+    while d * d <= n:
+        if n % d == 0:
+            return False
+        d = d + 2
+    return True
+
 def _order(num1, num2):
     # makes a bigger than b
     sum = num1+num2
@@ -50,3 +64,21 @@ def factor_pow(factors, power):
     return factors
 
 
+class PrimeGenerator(object):
+    def generate_prime_list(self, max_num):
+        """
+        returns an array P. P[n] = 1 if n is prime and P[n] = 0 if P is not prime
+        """
+        P = [-1]*(max_num+1)
+        P[0], P[1] = 0, 0
+
+        for i in range(2, max_num+1):
+            if P[i]!=-1: continue
+            P[i] = 1 if check_prime(i) else 0
+            j = i+i
+            while j < max_num+1:
+                P[j] = 0
+                j+=i
+        P[2] = 1
+
+        return P
