@@ -1,6 +1,6 @@
 import unittest
 
-from utils import factor_pow, gcd, factorize, get_num_from_factor, check_prime, PrimeGenerator
+from utils import factor_pow, gcd, factorize, get_num_from_factor, check_prime, PrimeGenerator, get_digits_from_num
 
 class TestUtils(unittest.TestCase):
     def test_gcd(self):
@@ -54,4 +54,17 @@ class TestUtils(unittest.TestCase):
         solution = PrimeGenerator()
         with self.subTest(expected = expected):
             self.assertListEqual(expected, solution.generate_prime_list(len(expected)-1))
+
+    def test_get_digits_from_num(self):
+        n, expected = 5, [5]
+        with self.subTest(expected = expected):
+            self.assertListEqual(expected, get_digits_from_num(n))
+
+        n, expected = 100, [1, 0, 0]
+        with self.subTest(expected = expected):
+            self.assertListEqual(expected, get_digits_from_num(n))
+
+        n, expected = 1234, [1, 2, 3, 4]
+        with self.subTest(expected = expected):
+            self.assertListEqual(expected, get_digits_from_num(n))
         
