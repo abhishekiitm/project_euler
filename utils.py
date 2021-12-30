@@ -82,3 +82,13 @@ class PrimeGenerator(object):
         P[2] = 1
 
         return P
+
+
+def get_digits_from_num(n):
+    digits = []
+    while n:
+        rem = n%10
+        n = int(n/10)
+        digits.append(rem)
+    digits.reverse()
+    return digits
