@@ -92,3 +92,9 @@ def get_digits_from_num(n):
         digits.append(rem)
     digits.reverse()
     return digits
+
+def get_num_from_digits(digits):
+    num = 0
+    for digit in digits:
+        num = num*10+digit
+    return num
